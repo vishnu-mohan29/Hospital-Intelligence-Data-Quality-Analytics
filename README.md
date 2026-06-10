@@ -88,11 +88,12 @@ This project uses multiple relational datasets:
 
 ---
 
-##  SQL Queries & Outputs
+##  ![SQL analysis](https://github.com/vishnu-mohan29/Hospital-Intelligence-Data-Quality-Analytics/blob/main/Hospital%20Intelligence%20%26%20Data%20Quality%20Analytics.sql)
+ & Outputs
 
 ### 🔹 1. Initial Query (Incorrect Result)
 
-![wrong\_result](https://github.com/your-username/repo-name/blob/main/images/wrong_result.png)
+![wrong\_result](https://github.com/vishnu-mohan29/Hospital-Intelligence-Data-Quality-Analytics/blob/main/Screenshot%20(107).png)
 
 👉 The result was incorrect due to extreme values in the dataset.
 
@@ -100,7 +101,7 @@ This project uses multiple relational datasets:
 
 ### 🔹 2. Outlier Detection
 
-![outlier](https://github.com/your-username/repo-name/blob/main/images/outlier.png)
+![outlier](https://github.com/vishnu-mohan29/Hospital-Intelligence-Data-Quality-Analytics/blob/main/Screenshot%20(108).png)
 
 👉 Found unrealistic values like **-17683 days**
 
@@ -108,7 +109,7 @@ This project uses multiple relational datasets:
 
 ### 🔹 3. Cleaned & Correct Result
 
-![final](https://github.com/your-username/repo-name/blob/main/images/final.png)
+![final](https://github.com/vishnu-mohan29/Hospital-Intelligence-Data-Quality-Analytics/blob/main/Screenshot%20(110).png)
 
 👉 Accurate insights after removing invalid records.
 
@@ -124,44 +125,6 @@ During analysis, the dataset contained:
 
 These issues significantly impacted KPI calculations.
 
----
-
-##  Outlier Detection Logic
-
-```sql
-SELECT 
-MIN(DATEDIFF(discharge_date, admission_date)) AS min_days,
-MAX(DATEDIFF(discharge_date, admission_date)) AS max_days
-FROM admissions;
-```
-
----
-
-##  Data Cleaning Approach
-
-###  Remove Invalid Records
-
-```sql
-WHERE discharge_date >= admission_date
-```
-
-###  Filter Realistic Values
-
-```sql
-WHERE DATEDIFF(discharge_date, admission_date) BETWEEN 0 AND 365
-```
-
----
-
-##  Final Optimized Query
-
-```sql
-SELECT 
-ROUND(AVG(DATEDIFF(discharge_date, admission_date))) AS avg_stay_days
-FROM admissions
-WHERE discharge_date >= admission_date
-AND DATEDIFF(discharge_date, admission_date) BETWEEN 0 AND 365;
-```
 
 ---
 
